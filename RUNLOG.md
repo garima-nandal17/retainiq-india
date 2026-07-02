@@ -57,3 +57,57 @@ docs: add build runlog (day 1)
 ...
 ```
 -->
+## Day 2 — Database Design & Data Load
+
+**Goal for today:** Design a normalized schema and load the raw BharatConnect dataset into DuckDB using an ETL pipeline. Complete the deferred documentation from Day 1 now that the dataset is available.
+
+### Done
+
+- Downloaded the IBM Telco Customer Churn dataset and stored it as `data/raw/telco_churn_raw.csv` (git-ignored).
+- Verified the dataset contains **7,043 rows** and **21 columns**, with a base churn rate of **26.54%**.
+- Designed a normalized relational schema (`sql/schema.sql`) consisting of:
+  - `customer` (CRM)
+  - `account` (billing + churn target)
+  - `service_subscription` (provisioning, long format)
+- Built the ETL pipeline (`src/load_data.py`) following the **Extract → Transform → Load (ETL)** pattern.
+- Created and activated a dedicated Python **3.13** virtual environment for the project.
+- Installed the required Day 2 dependencies (`pandas`, `duckdb`, `openpyxl`).
+- Generated `requirements.lock` using `pip freeze` to capture the exact dependency versions for reproducibility.
+- Converted the nine service columns from the raw dataset into a normalized long-format `service_subscription` table.
+- Successfully loaded the dataset into DuckDB (`data/processed/retainiq.duckdb`).
+- Verified successful loading:
+  - **7,043** customer records
+  - **7,043** account records
+  - **63,387** service subscription records
+  - **11** NULL values in `total_charges` (customers with tenure = 0)
+  - Base churn rate: **26.54%**
+- Authored the project Data Dictionary (`docs/data_dictionary.md`).
+- Completed the Data Acquisition & Provenance document (`docs/data_acquisition.md`).
+
+### Design Decisions
+
+**D-005 — Normalize before feature engineering.**  
+Customer demographics, billing information, and subscribed services are stored in separate tables. A denormalized feature layer will be created later (Day 3) specifically for analytics and modeling.
+
+**D-006 — Long-format service table.**  
+The nine service columns were converted into a `(customer_id, service_name, status)` structure. This eliminates repeating groups and makes later analyses such as service adoption, service counts, and SQL aggregations significantly simpler.
+
+**D-007 — Honest handling of missing values.**  
+The 11 blank values in `TotalCharges` are preserved as `NULL` rather than being imputed or replaced. Data quality decisions belong to the validation framework (Day 4), not the ETL loader.
+
+**D-008 — Currency by declaration.**  
+The business scenario assumes BharatConnect is a fictional Indian telecom operator, so monetary columns are treated as Indian Rupees (₹) without applying an exchange-rate conversion. This avoids introducing unnecessary assumptions while preserving analytical consistency.
+
+### Open / Carried to Next Day
+
+- **OPEN-4 (Day 3):** Build the SQL feature layer using advanced SQL (CTEs, advanced window functions, indexing, and execution-plan analysis).
+
+### Commits for Today
+
+```text
+feat(db): normalized database schema
+feat(etl): build ETL pipeline and load DuckDB
+chore(env): create Python 3.13 virtual environment and freeze dependencies
+docs: data dictionary and data acquisition
+docs(runlog): day 2
+```
