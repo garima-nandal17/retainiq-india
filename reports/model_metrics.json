@@ -1,0 +1,43 @@
+{
+  "seed": 42,
+  "n_train": 5634,
+  "n_test": 1409,
+  "features": [
+    "tenure_months",
+    "monthly_charges_inr",
+    "total_charges_inr",
+    "services_held",
+    "streaming_count",
+    "protection_count",
+    "monthly_charge_per_service",
+    "arpu_vs_contract_avg",
+    "senior_citizen",
+    "has_partner",
+    "has_dependents",
+    "paperless_billing",
+    "has_phone",
+    "contract_type",
+    "payment_method",
+    "internet_type"
+  ],
+  "primary": "logistic_calibrated",
+  "logistic_calibrated": {
+    "roc_auc": 0.8441,
+    "pr_auc": 0.6595,
+    "brier": 0.1367,
+    "accuracy": 0.7999,
+    "precision": 0.6554,
+    "recall": 0.5187,
+    "f1": 0.5791
+  },
+  "logistic_raw_brier": 0.1367,
+  "random_forest": {
+    "roc_auc": 0.846,
+    "pr_auc": 0.6705,
+    "brier": 0.1357,
+    "accuracy": 0.7999,
+    "precision": 0.6523,
+    "recall": 0.5267,
+    "f1": 0.5828
+  }
+}

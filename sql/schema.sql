@@ -74,3 +74,4 @@ CREATE TABLE service_subscription (
     PRIMARY KEY (customer_id, service_name),
     FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
 );
+CRAETE TABLE service subscription ()

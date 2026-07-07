@@ -1,0 +1,385 @@
+{
+  "generated_at": "2026-07-07T06:24:59.147288+00:00",
+  "overall_pass": true,
+  "n_checks": 47,
+  "n_hard": 46,
+  "n_soft": 1,
+  "checks": [
+    {
+      "dimension": "freshness",
+      "name": "load_age_within_sla",
+      "metric": 0.003,
+      "passed": true,
+      "detail": "last load 0.00d ago; SLA 30d (mechanism demo \u2014 static snapshot has no event timestamps)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:customer_id",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:tenure_months",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:contract_type",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:payment_method",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:paperless_billing",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:monthly_charges_inr",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:total_charges_inr",
+      "metric": 0.00156,
+      "passed": true,
+      "detail": "11 nulls (0.156%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:churned",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:senior_citizen",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:has_partner",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:has_dependents",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:services_held",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:internet_type",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:has_phone",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:streaming_count",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:protection_count",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:arpu_decile",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:tenure_quartile",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:arpu_rank_in_contract",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:arpu_pctile_in_contract",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:contract_avg_arpu",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:arpu_vs_contract_avg",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:tenure_bucket",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:contract_risk",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:elec_check_flag",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:fiber_flag",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:has_internet",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:monthly_charge_per_service",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:family_flag",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:high_risk_contract",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:customer_value_segment",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:is_high_value_customer",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "completeness",
+      "name": "nonnull:risk_segment",
+      "metric": 0.0,
+      "passed": true,
+      "detail": "0 nulls (0.000%)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "uniqueness",
+      "name": "customer_pk_unique",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 duplicate customer_id",
+      "severity": "hard"
+    },
+    {
+      "dimension": "uniqueness",
+      "name": "service_pk_unique",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 duplicate (customer_id, service_name)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "consistency",
+      "name": "tenure0_iff_null_total",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 rows break tenure0<->null-total rule",
+      "severity": "hard"
+    },
+    {
+      "dimension": "consistency",
+      "name": "monthly_charges_positive",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 rows with monthly_charges <= 0",
+      "severity": "hard"
+    },
+    {
+      "dimension": "consistency",
+      "name": "internet_dependency",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 add-on rows inconsistent with internet status",
+      "severity": "hard"
+    },
+    {
+      "dimension": "consistency",
+      "name": "total~tenure*monthly_within_5pct",
+      "metric": 0.805,
+      "passed": true,
+      "detail": "80.5% within 5% of tenure*monthly \u2014 remainder expected: monthly rate evolves as services change over tenure",
+      "severity": "soft"
+    },
+    {
+      "dimension": "accuracy",
+      "name": "tenure_in_0_72",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 out-of-range tenure",
+      "severity": "hard"
+    },
+    {
+      "dimension": "accuracy",
+      "name": "monthly_charges_in_range",
+      "metric": 0,
+      "passed": true,
+      "detail": "0 out-of-range monthly_charges",
+      "severity": "hard"
+    },
+    {
+      "dimension": "accuracy",
+      "name": "domain:contract_type",
+      "metric": 0,
+      "passed": true,
+      "detail": "unexpected values: none",
+      "severity": "hard"
+    },
+    {
+      "dimension": "accuracy",
+      "name": "domain:payment_method",
+      "metric": 0,
+      "passed": true,
+      "detail": "unexpected values: none",
+      "severity": "hard"
+    },
+    {
+      "dimension": "accuracy",
+      "name": "domain:gender",
+      "metric": 0,
+      "passed": true,
+      "detail": "unexpected values: none",
+      "severity": "hard"
+    },
+    {
+      "dimension": "leakage",
+      "name": "no_near_perfect_predictor",
+      "metric": 0.4051,
+      "passed": true,
+      "detail": "max |corr(feature,target)| = 0.405 (high_risk_contract)",
+      "severity": "hard"
+    },
+    {
+      "dimension": "leakage",
+      "name": "target_excluded_from_X",
+      "metric": 0,
+      "passed": true,
+      "detail": "model X excludes ['churned', 'customer_id']; segments built from drivers, not the label",
+      "severity": "hard"
+    }
+  ]
+}

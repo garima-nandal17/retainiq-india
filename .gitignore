@@ -1,2 +1,46 @@
-# Generated feature datasets
-data/processed/*.parquet
+# ============================================================================
+# RetainIQ India — .gitignore
+# Tracked as portfolio artifacts: models/, reports/ (figures + JSON),
+# executed notebooks. Ignored: raw/processed data (regenerable, customer-level),
+# environments, caches, OS/IDE noise. See runlog D-030.
+# ============================================================================
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---- Environments ----
+.venv/
+venv/
+env/
+.env
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Data: never commit raw or processed customer data (rebuild from source) ----
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# ---- Local planning drafts (promoted into place on their real day) ----
+docs/planning/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- IDE ----
+.idea/
+.vscode/
