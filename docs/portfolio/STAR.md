@@ -33,3 +33,14 @@ I implement the mechanism and document the limitation").
 **One-line résumé version.** *"Built a 5-dimension data-quality framework (47
 checks, hard/soft severity) with an automated target-leakage scan and tests,
 locking a provably trustworthy feature layer before modeling."*
+STAR #2 — Evaluation, explainability & the business read (Day 8 milestone: modeling locked)
+
+Situation. The churn engine produced calibrated probabilities, but a probability nobody understands or trusts can't justify spending a retention budget — and accuracy on a 26.5%-churn base is misleading (predicting "nobody churns" scores ~73%).
+
+Task. Evaluate the model beyond accuracy, explain why it flags a customer in language Priya (Head of Retention) can act on, and translate both into a targeting recommendation.
+
+Action. I evaluated on ranking and probability quality rather than accuracy — ROC-AUC 0.844, PR-AUC 0.660, a reliability curve (max calibration gap 0.055), a precision/recall/F1 threshold sweep, and a decile-lift gains table. I explained drivers two ways that agree: logistic odds ratios and SHAP (explaining the base logistic, valid because calibration is a monotonic transform). I then wrote a stakeholder "business read" — and, importantly, flagged an honest caveat: total_charges shows a churn-raising coefficient only conditional on tenure (a collinearity effect), so I anchored the narrative on the drivers all methods agree on (tenure, contract, protection adoption) rather than over-reading any single collinear coefficient.
+
+Result. A defensible, explainable model with a concrete targeting rule: the top 3 risk deciles (30% of customers) capture 65% of all churners, and lowering the threshold to 0.30 raises recall to 76% — with the exact operating point deferred to the Day 9-10 profit curve. The model is locked; explanation and evaluation are reproducible artifacts, not slideware.
+
+One-line résumé version. "Evaluated a churn model on ranking + calibration (AUC 0.844, calibration gap 0.055), explained it with SHAP and odds ratios, and translated it into a decile-based targeting rule capturing 65% of churners in the top 30%."

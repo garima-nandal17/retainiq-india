@@ -1,0 +1,185 @@
+{
+  "coef_drivers": [
+    {
+      "feature": "tenure_months",
+      "coef": -1.375,
+      "odds_ratio": 0.253
+    },
+    {
+      "feature": "services_held",
+      "coef": 0.874,
+      "odds_ratio": 2.396
+    },
+    {
+      "feature": "contract_type = Two year",
+      "coef": -0.848,
+      "odds_ratio": 0.428
+    },
+    {
+      "feature": "internet_type = No",
+      "coef": -0.83,
+      "odds_ratio": 0.436
+    },
+    {
+      "feature": "has_phone",
+      "coef": -0.828,
+      "odds_ratio": 0.437
+    },
+    {
+      "feature": "protection_count",
+      "coef": -0.681,
+      "odds_ratio": 0.506
+    },
+    {
+      "feature": "total_charges_inr",
+      "coef": 0.655,
+      "odds_ratio": 1.924
+    },
+    {
+      "feature": "internet_type = Fiber optic",
+      "coef": 0.629,
+      "odds_ratio": 1.876
+    },
+    {
+      "feature": "contract_type = Month-to-month",
+      "coef": 0.54,
+      "odds_ratio": 1.716
+    },
+    {
+      "feature": "paperless_billing",
+      "coef": 0.368,
+      "odds_ratio": 1.445
+    },
+    {
+      "feature": "internet_type = DSL",
+      "coef": -0.262,
+      "odds_ratio": 0.77
+    },
+    {
+      "feature": "payment_method = Bank transfer (automatic)",
+      "coef": -0.227,
+      "odds_ratio": 0.797
+    },
+    {
+      "feature": "payment_method = Credit card (automatic)",
+      "coef": -0.218,
+      "odds_ratio": 0.804
+    },
+    {
+      "feature": "senior_citizen",
+      "coef": 0.217,
+      "odds_ratio": 1.242
+    },
+    {
+      "feature": "payment_method = Mailed check",
+      "coef": -0.204,
+      "odds_ratio": 0.815
+    },
+    {
+      "feature": "arpu_vs_contract_avg",
+      "coef": -0.203,
+      "odds_ratio": 0.816
+    },
+    {
+      "feature": "payment_method = Electronic check",
+      "coef": 0.186,
+      "odds_ratio": 1.204
+    },
+    {
+      "feature": "contract_type = One year",
+      "coef": -0.156,
+      "odds_ratio": 0.856
+    },
+    {
+      "feature": "has_dependents",
+      "coef": -0.152,
+      "odds_ratio": 0.859
+    },
+    {
+      "feature": "monthly_charge_per_service",
+      "coef": 0.066,
+      "odds_ratio": 1.068
+    },
+    {
+      "feature": "monthly_charges_inr",
+      "coef": -0.062,
+      "odds_ratio": 0.94
+    },
+    {
+      "feature": "streaming_count",
+      "coef": -0.059,
+      "odds_ratio": 0.943
+    },
+    {
+      "feature": "has_partner",
+      "coef": -0.041,
+      "odds_ratio": 0.96
+    }
+  ],
+  "shap_top": [
+    {
+      "feature": "tenure_months",
+      "mean_abs_shap": 1.2145
+    },
+    {
+      "feature": "services_held",
+      "mean_abs_shap": 0.7624
+    },
+    {
+      "feature": "protection_count",
+      "mean_abs_shap": 0.6197
+    },
+    {
+      "feature": "total_charges_inr",
+      "mean_abs_shap": 0.5288
+    },
+    {
+      "feature": "internet_type = Fiber optic",
+      "mean_abs_shap": 0.3127
+    },
+    {
+      "feature": "contract_type = Two year",
+      "mean_abs_shap": 0.2812
+    },
+    {
+      "feature": "internet_type = No",
+      "mean_abs_shap": 0.2789
+    },
+    {
+      "feature": "contract_type = Month-to-month",
+      "mean_abs_shap": 0.2629
+    },
+    {
+      "feature": "paperless_billing",
+      "mean_abs_shap": 0.1835
+    },
+    {
+      "feature": "arpu_vs_contract_avg",
+      "mean_abs_shap": 0.1785
+    },
+    {
+      "feature": "has_phone",
+      "mean_abs_shap": 0.1483
+    },
+    {
+      "feature": "internet_type = DSL",
+      "mean_abs_shap": 0.1164
+    }
+  ],
+  "narrative": {
+    "raises_churn": [
+      "services_held (\u00d72.40 odds)",
+      "total_charges_inr (\u00d71.92 odds)",
+      "internet_type = Fiber optic (\u00d71.88 odds)",
+      "contract_type = Month-to-month (\u00d71.72 odds)",
+      "paperless_billing (\u00d71.45 odds)"
+    ],
+    "lowers_churn": [
+      "tenure_months (\u00d70.25 odds)",
+      "contract_type = Two year (\u00d70.43 odds)",
+      "internet_type = No (\u00d70.44 odds)",
+      "has_phone (\u00d70.44 odds)",
+      "protection_count (\u00d70.51 odds)"
+    ]
+  }
+}

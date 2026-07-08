@@ -1,0 +1,118 @@
+{
+  "headline": {
+    "roc_auc": 0.8441,
+    "pr_auc": 0.6595,
+    "brier": 0.1367,
+    "accuracy": 0.7999,
+    "precision": 0.6554,
+    "recall": 0.5187,
+    "f1": 0.5791
+  },
+  "confusion_at_0.5": {
+    "tn": 933,
+    "fp": 102,
+    "fn": 180,
+    "tp": 194
+  },
+  "max_calibration_gap": 0.0554,
+  "f1_max_threshold": {
+    "threshold": 0.3,
+    "precision": 0.53,
+    "recall": 0.7567,
+    "f1": 0.6233
+  },
+  "top3_decile_capture": 0.65,
+  "decile_lift": [
+    {
+      "decile": 1,
+      "customers": 141,
+      "churners": 107,
+      "churn_rate": 0.7588652482269503,
+      "lift": 2.86,
+      "cum_churners": 107,
+      "cum_capture": 0.286
+    },
+    {
+      "decile": 2,
+      "customers": 141,
+      "churners": 80,
+      "churn_rate": 0.5673758865248227,
+      "lift": 2.14,
+      "cum_churners": 187,
+      "cum_capture": 0.5
+    },
+    {
+      "decile": 3,
+      "customers": 141,
+      "churners": 56,
+      "churn_rate": 0.3971631205673759,
+      "lift": 1.5,
+      "cum_churners": 243,
+      "cum_capture": 0.65
+    },
+    {
+      "decile": 4,
+      "customers": 141,
+      "churners": 47,
+      "churn_rate": 0.3333333333333333,
+      "lift": 1.26,
+      "cum_churners": 290,
+      "cum_capture": 0.775
+    },
+    {
+      "decile": 5,
+      "customers": 141,
+      "churners": 39,
+      "churn_rate": 0.2765957446808511,
+      "lift": 1.04,
+      "cum_churners": 329,
+      "cum_capture": 0.88
+    },
+    {
+      "decile": 6,
+      "customers": 141,
+      "churners": 19,
+      "churn_rate": 0.1347517730496454,
+      "lift": 0.51,
+      "cum_churners": 348,
+      "cum_capture": 0.93
+    },
+    {
+      "decile": 7,
+      "customers": 141,
+      "churners": 18,
+      "churn_rate": 0.1276595744680851,
+      "lift": 0.48,
+      "cum_churners": 366,
+      "cum_capture": 0.979
+    },
+    {
+      "decile": 8,
+      "customers": 141,
+      "churners": 5,
+      "churn_rate": 0.03546099290780142,
+      "lift": 0.13,
+      "cum_churners": 371,
+      "cum_capture": 0.992
+    },
+    {
+      "decile": 9,
+      "customers": 141,
+      "churners": 2,
+      "churn_rate": 0.014184397163120567,
+      "lift": 0.05,
+      "cum_churners": 373,
+      "cum_capture": 0.997
+    },
+    {
+      "decile": 10,
+      "customers": 140,
+      "churners": 1,
+      "churn_rate": 0.007142857142857143,
+      "lift": 0.03,
+      "cum_churners": 374,
+      "cum_capture": 1.0
+    }
+  ],
+  "note": "operating threshold is set by the Day 9-10 profit curve, not F1"
+}
