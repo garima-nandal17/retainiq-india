@@ -1,0 +1,105 @@
+{
+  "assumption_note": "All monetary results are (simulation-based estimates). The source dataset contains ARPU and tenure but no cost, margin, offer, or acceptance data; margin, offer cost, acceptance rate, and budget are declared assumptions (see src/economics.py) and are stress-tested in the Day-11 sensitivity analysis. Only the Day-12 A/B design can measure acceptance for real.",
+  "scenarios": {
+    "pessimistic": {
+      "inputs": {
+        "budget_inr": 100000.0,
+        "acceptance_scale": 0.6,
+        "offer_cost_multiplier": 1.5,
+        "gross_margin": 0.5
+      },
+      "n_contacted": 0,
+      "spend_inr": 0.0,
+      "budget_utilisation_pct": 0.0,
+      "net_retained_inr": 0.0,
+      "cost_per_save_inr": null,
+      "offer_mix": {}
+    },
+    "base": {
+      "inputs": {
+        "budget_inr": 100000.0,
+        "acceptance_scale": 1.0,
+        "offer_cost_multiplier": 1.0,
+        "gross_margin": 0.6
+      },
+      "n_contacted": 1347,
+      "spend_inr": 100000.0,
+      "budget_utilisation_pct": 100.0,
+      "net_retained_inr": 63132.65,
+      "cost_per_save_inr": 212.11,
+      "offer_mix": {
+        "Bill discount": 50,
+        "Courtesy call": 833,
+        "Protection bundle": 464
+      }
+    },
+    "optimistic": {
+      "inputs": {
+        "budget_inr": 100000.0,
+        "acceptance_scale": 1.3,
+        "offer_cost_multiplier": 0.75,
+        "gross_margin": 0.7
+      },
+      "n_contacted": 740,
+      "spend_inr": 99900.0,
+      "budget_utilisation_pct": 99.9,
+      "net_retained_inr": 158810.48,
+      "cost_per_save_inr": 385.71,
+      "offer_mix": {
+        "Bill discount": 444,
+        "Protection bundle": 296
+      }
+    }
+  },
+  "budget_response_curve": [
+    {
+      "budget_inr": 10000,
+      "net_retained_inr": 10917.36,
+      "n_contacted": 184,
+      "budget_utilisation_pct": 99.2
+    },
+    {
+      "budget_inr": 25000,
+      "net_retained_inr": 24106.66,
+      "n_contacted": 406,
+      "budget_utilisation_pct": 99.8
+    },
+    {
+      "budget_inr": 50000,
+      "net_retained_inr": 40623.99,
+      "n_contacted": 768,
+      "budget_utilisation_pct": 99.9
+    },
+    {
+      "budget_inr": 75000,
+      "net_retained_inr": 53091.91,
+      "n_contacted": 1062,
+      "budget_utilisation_pct": 99.9
+    },
+    {
+      "budget_inr": 100000,
+      "net_retained_inr": 63132.65,
+      "n_contacted": 1347,
+      "budget_utilisation_pct": 100.0
+    },
+    {
+      "budget_inr": 150000,
+      "net_retained_inr": 77104.96,
+      "n_contacted": 1845,
+      "budget_utilisation_pct": 100.0
+    },
+    {
+      "budget_inr": 200000,
+      "net_retained_inr": 78490.0,
+      "n_contacted": 2138,
+      "budget_utilisation_pct": 81.4
+    },
+    {
+      "budget_inr": 300000,
+      "net_retained_inr": 78490.0,
+      "n_contacted": 2138,
+      "budget_utilisation_pct": 54.3
+    }
+  ],
+  "saturation_budget_inr": 200000
+}

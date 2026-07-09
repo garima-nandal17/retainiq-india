@@ -44,3 +44,14 @@ Action. I evaluated on ranking and probability quality rather than accuracy — 
 Result. A defensible, explainable model with a concrete targeting rule: the top 3 risk deciles (30% of customers) capture 65% of all churners, and lowering the threshold to 0.30 raises recall to 76% — with the exact operating point deferred to the Day 9-10 profit curve. The model is locked; explanation and evaluation are reproducible artifacts, not slideware.
 
 One-line résumé version. "Evaluated a churn model on ranking + calibration (AUC 0.844, calibration gap 0.055), explained it with SHAP and odds ratios, and translated it into a decile-based targeting rule capturing 65% of churners in the top 30%."
+STAR #3 — Budget-constrained retention optimizer (Day 10 milestone: thesis proven)
+
+Situation. BharatConnect's retention team had a churn ranking but a fixed monthly budget. A churn score alone doesn't say whom to call: contacting every customer the model flags would cost more than it saves, because the most at-risk customers are not always the most valuable to save.
+
+Task. Turn calibrated probabilities into a decision — whom to contact, with which offer, under a hard budget — and prove the decision beats the obvious alternatives.
+
+Action. I attached money to every customer: a 24-month LTV discounted by their contract's actual Kaplan-Meier survival curve, giving expected value at risk. I built a rupee profit curve, then discovered the key insight — a single global threshold can never be optimal, because a customer's break-even churn probability depends on their LTV and ranged from 0.22 to 1.96 across the base. So I formulated targeting as a 0/1 knapsack: choose customers and offers maximising net revenue retained subject to the budget, solved greedily by benefit-to-cost ratio, and verified the greedy solution against a dynamic-programming bound (gap 0.000%). Critically, I centralised every rupee assumption in one auditable module and rejected an initial ₹500 offer-cost assumption after measurement showed it made 0 of 7,043 customers profitable to contact.
+
+Result. Under a binding ₹1,00,000 budget the optimizer contacts 1,349 customers with a tailored offer mix, using 100% of budget and retaining ₹63,133 net — 23.9% more than ranking by churn probability alone (the typical churn-project approach), and 205% better than contacting everyone, which actually loses ₹60,009 (simulation-based). Sensitivity analysis showed the campaign survives down to a 12.2% acceptance rate — a ~3× cushion — while the pessimistic scenario correctly recommends contacting nobody.
+
+One-line résumé version. "Built a budget-constrained retention optimizer (0/1 knapsack, DP-verified) that assigns offers to maximise net revenue retained — 23.9% more efficient than probability-ranked targeting under a fixed budget (simulation-based)."

@@ -1,0 +1,149 @@
+{
+  "baseline_net_inr": 63132.65,
+  "one_way": {
+    "acceptance_scale": [
+      {
+        "acceptance_scale": 0.4,
+        "net_retained_inr": 214.0
+      },
+      {
+        "acceptance_scale": 0.6,
+        "net_retained_inr": 10259.0
+      },
+      {
+        "acceptance_scale": 0.8,
+        "net_retained_inr": 37234.0
+      },
+      {
+        "acceptance_scale": 1.0,
+        "net_retained_inr": 63133.0
+      },
+      {
+        "acceptance_scale": 1.2,
+        "net_retained_inr": 87539.0
+      },
+      {
+        "acceptance_scale": 1.4,
+        "net_retained_inr": 111324.0
+      },
+      {
+        "acceptance_scale": 1.6,
+        "net_retained_inr": 130823.0
+      }
+    ],
+    "offer_cost_multiplier": [
+      {
+        "offer_cost_multiplier": 0.5,
+        "net_retained_inr": 143935.0
+      },
+      {
+        "offer_cost_multiplier": 0.75,
+        "net_retained_inr": 94486.0
+      },
+      {
+        "offer_cost_multiplier": 1.0,
+        "net_retained_inr": 63133.0
+      },
+      {
+        "offer_cost_multiplier": 1.5,
+        "net_retained_inr": 26433.0
+      },
+      {
+        "offer_cost_multiplier": 2.0,
+        "net_retained_inr": 6039.0
+      },
+      {
+        "offer_cost_multiplier": 3.0,
+        "net_retained_inr": 0.0
+      }
+    ],
+    "gross_margin": [
+      {
+        "gross_margin": 0.4,
+        "net_retained_inr": 17622.0
+      },
+      {
+        "gross_margin": 0.5,
+        "net_retained_inr": 42476.0
+      },
+      {
+        "gross_margin": 0.6,
+        "net_retained_inr": 63133.0
+      },
+      {
+        "gross_margin": 0.7,
+        "net_retained_inr": 83226.0
+      },
+      {
+        "gross_margin": 0.8,
+        "net_retained_inr": 103963.0
+      }
+    ],
+    "budget_inr": [
+      {
+        "budget_inr": 25000,
+        "net_retained_inr": 24107.0
+      },
+      {
+        "budget_inr": 50000,
+        "net_retained_inr": 40624.0
+      },
+      {
+        "budget_inr": 100000,
+        "net_retained_inr": 63133.0
+      },
+      {
+        "budget_inr": 150000,
+        "net_retained_inr": 77105.0
+      },
+      {
+        "budget_inr": 200000,
+        "net_retained_inr": 78490.0
+      },
+      {
+        "budget_inr": 400000,
+        "net_retained_inr": 78490.0
+      }
+    ]
+  },
+  "break_even_acceptance_scale": 0.35,
+  "break_even_protection_acceptance_pct": 12.2,
+  "two_way_grid": {
+    "cost x0.5": {
+      "acc x0.4": 18617.0,
+      "acc x0.7": 86109.0,
+      "acc x1.0": 143935.0,
+      "acc x1.3": 201120.0,
+      "acc x1.6": 269323.0
+    },
+    "cost x1.0": {
+      "acc x0.4": 214.0,
+      "acc x0.7": 21943.0,
+      "acc x1.0": 63133.0,
+      "acc x1.3": 99766.0,
+      "acc x1.6": 130823.0
+    },
+    "cost x1.5": {
+      "acc x0.4": 0.0,
+      "acc x0.7": 2489.0,
+      "acc x1.0": 26433.0,
+      "acc x1.3": 57040.0,
+      "acc x1.6": 82265.0
+    },
+    "cost x2.0": {
+      "acc x0.4": 0.0,
+      "acc x0.7": 0.0,
+      "acc x1.0": 6039.0,
+      "acc x1.3": 29955.0,
+      "acc x1.6": 54745.0
+    },
+    "cost x3.0": {
+      "acc x0.4": 0.0,
+      "acc x0.7": 0.0,
+      "acc x1.0": 0.0,
+      "acc x1.3": 2132.0,
+      "acc x1.6": 14684.0
+    }
+  },
+  "note": "All figures (simulation-based). Acceptance is the most load-bearing assumption and is only measurable via the Day-12 A/B test."
+}

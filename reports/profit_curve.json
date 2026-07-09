@@ -1,0 +1,739 @@
+{
+  "assumptions": {
+    "gross_margin": 0.6,
+    "monthly_discount_rate": 0.008,
+    "horizon_months": 24,
+    "offer_cost_inr": 120.0,
+    "acceptance_rate": 0.35,
+    "budget_inr": 100000.0
+  },
+  "offer_cost_override": null,
+  "n_positive_ev_customers": 1730,
+  "assumption_note": "All monetary results are (simulation-based estimates). The source dataset contains ARPU and tenure but no cost, margin, offer, or acceptance data; margin, offer cost, acceptance rate, and budget are declared assumptions (see src/economics.py) and are stress-tested in the Day-11 sensitivity analysis. Only the Day-12 A/B design can measure acceptance for real.",
+  "optimal_threshold": 0.5,
+  "optimal": {
+    "n_contacted": 1529,
+    "benefit_inr": 258007.17,
+    "cost_inr": 183480.0,
+    "net_retained_inr": 74527.17
+  },
+  "contact_everyone": {
+    "n_contacted": 7043,
+    "net_retained_inr": -369938.06
+  },
+  "at_threshold_0.5": {
+    "n_contacted": 1529,
+    "net_retained_inr": 74527.17
+  },
+  "theoretical_ceiling_inr": 89549.15,
+  "uplift_vs_contact_everyone_pct": 120.1,
+  "curve": [
+    {
+      "threshold": 0.0,
+      "n_contacted": 7043,
+      "benefit_inr": 475221.94,
+      "cost_inr": 845160.0,
+      "net_retained_inr": -369938.06
+    },
+    {
+      "threshold": 0.01,
+      "n_contacted": 6462,
+      "benefit_inr": 474739.12,
+      "cost_inr": 775440.0,
+      "net_retained_inr": -300700.88
+    },
+    {
+      "threshold": 0.02,
+      "n_contacted": 5995,
+      "benefit_inr": 472954.13,
+      "cost_inr": 719400.0,
+      "net_retained_inr": -246445.87
+    },
+    {
+      "threshold": 0.03,
+      "n_contacted": 5695,
+      "benefit_inr": 471080.65,
+      "cost_inr": 683400.0,
+      "net_retained_inr": -212319.35
+    },
+    {
+      "threshold": 0.04,
+      "n_contacted": 5449,
+      "benefit_inr": 468950.4,
+      "cost_inr": 653880.0,
+      "net_retained_inr": -184929.6
+    },
+    {
+      "threshold": 0.05,
+      "n_contacted": 5243,
+      "benefit_inr": 466283.63,
+      "cost_inr": 629160.0,
+      "net_retained_inr": -162876.37
+    },
+    {
+      "threshold": 0.06,
+      "n_contacted": 5062,
+      "benefit_inr": 463299.61,
+      "cost_inr": 607440.0,
+      "net_retained_inr": -144140.39
+    },
+    {
+      "threshold": 0.07,
+      "n_contacted": 4889,
+      "benefit_inr": 459796.41,
+      "cost_inr": 586680.0,
+      "net_retained_inr": -126883.59
+    },
+    {
+      "threshold": 0.08,
+      "n_contacted": 4717,
+      "benefit_inr": 455869.43,
+      "cost_inr": 566040.0,
+      "net_retained_inr": -110170.57
+    },
+    {
+      "threshold": 0.09,
+      "n_contacted": 4583,
+      "benefit_inr": 452393.52,
+      "cost_inr": 549960.0,
+      "net_retained_inr": -97566.48
+    },
+    {
+      "threshold": 0.1,
+      "n_contacted": 4444,
+      "benefit_inr": 448618.8,
+      "cost_inr": 533280.0,
+      "net_retained_inr": -84661.2
+    },
+    {
+      "threshold": 0.11,
+      "n_contacted": 4329,
+      "benefit_inr": 445252.03,
+      "cost_inr": 519480.0,
+      "net_retained_inr": -74227.97
+    },
+    {
+      "threshold": 0.12,
+      "n_contacted": 4243,
+      "benefit_inr": 442595.82,
+      "cost_inr": 509160.0,
+      "net_retained_inr": -66564.18
+    },
+    {
+      "threshold": 0.13,
+      "n_contacted": 4131,
+      "benefit_inr": 438576.37,
+      "cost_inr": 495720.0,
+      "net_retained_inr": -57143.63
+    },
+    {
+      "threshold": 0.14,
+      "n_contacted": 4046,
+      "benefit_inr": 435327.41,
+      "cost_inr": 485520.0,
+      "net_retained_inr": -50192.59
+    },
+    {
+      "threshold": 0.15,
+      "n_contacted": 3936,
+      "benefit_inr": 431133.81,
+      "cost_inr": 472320.0,
+      "net_retained_inr": -41186.19
+    },
+    {
+      "threshold": 0.16,
+      "n_contacted": 3846,
+      "benefit_inr": 427508.53,
+      "cost_inr": 461520.0,
+      "net_retained_inr": -34011.47
+    },
+    {
+      "threshold": 0.17,
+      "n_contacted": 3752,
+      "benefit_inr": 423257.46,
+      "cost_inr": 450240.0,
+      "net_retained_inr": -26982.54
+    },
+    {
+      "threshold": 0.18,
+      "n_contacted": 3660,
+      "benefit_inr": 419854.79,
+      "cost_inr": 439200.0,
+      "net_retained_inr": -19345.21
+    },
+    {
+      "threshold": 0.19,
+      "n_contacted": 3575,
+      "benefit_inr": 415826.17,
+      "cost_inr": 429000.0,
+      "net_retained_inr": -13173.83
+    },
+    {
+      "threshold": 0.2,
+      "n_contacted": 3464,
+      "benefit_inr": 411297.32,
+      "cost_inr": 415680.0,
+      "net_retained_inr": -4382.68
+    },
+    {
+      "threshold": 0.21,
+      "n_contacted": 3339,
+      "benefit_inr": 407093.33,
+      "cost_inr": 400680.0,
+      "net_retained_inr": 6413.33
+    },
+    {
+      "threshold": 0.22,
+      "n_contacted": 3261,
+      "benefit_inr": 402424.98,
+      "cost_inr": 391320.0,
+      "net_retained_inr": 11104.98
+    },
+    {
+      "threshold": 0.23,
+      "n_contacted": 3187,
+      "benefit_inr": 398558.58,
+      "cost_inr": 382440.0,
+      "net_retained_inr": 16118.58
+    },
+    {
+      "threshold": 0.24,
+      "n_contacted": 3101,
+      "benefit_inr": 394080.47,
+      "cost_inr": 372120.0,
+      "net_retained_inr": 21960.47
+    },
+    {
+      "threshold": 0.25,
+      "n_contacted": 3052,
+      "benefit_inr": 391206.27,
+      "cost_inr": 366240.0,
+      "net_retained_inr": 24966.27
+    },
+    {
+      "threshold": 0.26,
+      "n_contacted": 2973,
+      "benefit_inr": 386519.2,
+      "cost_inr": 356760.0,
+      "net_retained_inr": 29759.2
+    },
+    {
+      "threshold": 0.27,
+      "n_contacted": 2863,
+      "benefit_inr": 380634.69,
+      "cost_inr": 343560.0,
+      "net_retained_inr": 37074.69
+    },
+    {
+      "threshold": 0.28,
+      "n_contacted": 2811,
+      "benefit_inr": 377139.09,
+      "cost_inr": 337320.0,
+      "net_retained_inr": 39819.09
+    },
+    {
+      "threshold": 0.29,
+      "n_contacted": 2753,
+      "benefit_inr": 373158.7,
+      "cost_inr": 330360.0,
+      "net_retained_inr": 42798.7
+    },
+    {
+      "threshold": 0.3,
+      "n_contacted": 2692,
+      "benefit_inr": 368473.2,
+      "cost_inr": 323040.0,
+      "net_retained_inr": 45433.2
+    },
+    {
+      "threshold": 0.31,
+      "n_contacted": 2627,
+      "benefit_inr": 363393.02,
+      "cost_inr": 315240.0,
+      "net_retained_inr": 48153.02
+    },
+    {
+      "threshold": 0.32,
+      "n_contacted": 2552,
+      "benefit_inr": 357608.61,
+      "cost_inr": 306240.0,
+      "net_retained_inr": 51368.61
+    },
+    {
+      "threshold": 0.33,
+      "n_contacted": 2488,
+      "benefit_inr": 352218.81,
+      "cost_inr": 298560.0,
+      "net_retained_inr": 53658.81
+    },
+    {
+      "threshold": 0.34,
+      "n_contacted": 2432,
+      "benefit_inr": 347749.06,
+      "cost_inr": 291840.0,
+      "net_retained_inr": 55909.06
+    },
+    {
+      "threshold": 0.35,
+      "n_contacted": 2355,
+      "benefit_inr": 341701.33,
+      "cost_inr": 282600.0,
+      "net_retained_inr": 59101.33
+    },
+    {
+      "threshold": 0.36,
+      "n_contacted": 2298,
+      "benefit_inr": 336732.99,
+      "cost_inr": 275760.0,
+      "net_retained_inr": 60972.99
+    },
+    {
+      "threshold": 0.37,
+      "n_contacted": 2231,
+      "benefit_inr": 331047.99,
+      "cost_inr": 267720.0,
+      "net_retained_inr": 63327.99
+    },
+    {
+      "threshold": 0.38,
+      "n_contacted": 2167,
+      "benefit_inr": 324858.44,
+      "cost_inr": 260040.0,
+      "net_retained_inr": 64818.44
+    },
+    {
+      "threshold": 0.39,
+      "n_contacted": 2107,
+      "benefit_inr": 319205.11,
+      "cost_inr": 252840.0,
+      "net_retained_inr": 66365.11
+    },
+    {
+      "threshold": 0.4,
+      "n_contacted": 2064,
+      "benefit_inr": 314972.93,
+      "cost_inr": 247680.0,
+      "net_retained_inr": 67292.93
+    },
+    {
+      "threshold": 0.41,
+      "n_contacted": 2006,
+      "benefit_inr": 309290.02,
+      "cost_inr": 240720.0,
+      "net_retained_inr": 68570.02
+    },
+    {
+      "threshold": 0.42,
+      "n_contacted": 1958,
+      "benefit_inr": 304266.48,
+      "cost_inr": 234960.0,
+      "net_retained_inr": 69306.48
+    },
+    {
+      "threshold": 0.43,
+      "n_contacted": 1909,
+      "benefit_inr": 299979.54,
+      "cost_inr": 229080.0,
+      "net_retained_inr": 70899.54
+    },
+    {
+      "threshold": 0.44,
+      "n_contacted": 1847,
+      "benefit_inr": 294103.63,
+      "cost_inr": 221640.0,
+      "net_retained_inr": 72463.63
+    },
+    {
+      "threshold": 0.45,
+      "n_contacted": 1797,
+      "benefit_inr": 288621.1,
+      "cost_inr": 215640.0,
+      "net_retained_inr": 72981.1
+    },
+    {
+      "threshold": 0.46,
+      "n_contacted": 1747,
+      "benefit_inr": 283158.51,
+      "cost_inr": 209640.0,
+      "net_retained_inr": 73518.51
+    },
+    {
+      "threshold": 0.47,
+      "n_contacted": 1688,
+      "benefit_inr": 276760.17,
+      "cost_inr": 202560.0,
+      "net_retained_inr": 74200.17
+    },
+    {
+      "threshold": 0.48,
+      "n_contacted": 1638,
+      "benefit_inr": 270973.79,
+      "cost_inr": 196560.0,
+      "net_retained_inr": 74413.79
+    },
+    {
+      "threshold": 0.49,
+      "n_contacted": 1584,
+      "benefit_inr": 264097.94,
+      "cost_inr": 190080.0,
+      "net_retained_inr": 74017.94
+    },
+    {
+      "threshold": 0.5,
+      "n_contacted": 1529,
+      "benefit_inr": 258007.17,
+      "cost_inr": 183480.0,
+      "net_retained_inr": 74527.17
+    },
+    {
+      "threshold": 0.51,
+      "n_contacted": 1479,
+      "benefit_inr": 251589.22,
+      "cost_inr": 177480.0,
+      "net_retained_inr": 74109.22
+    },
+    {
+      "threshold": 0.52,
+      "n_contacted": 1439,
+      "benefit_inr": 246182.65,
+      "cost_inr": 172680.0,
+      "net_retained_inr": 73502.65
+    },
+    {
+      "threshold": 0.53,
+      "n_contacted": 1372,
+      "benefit_inr": 237438.21,
+      "cost_inr": 164640.0,
+      "net_retained_inr": 72798.21
+    },
+    {
+      "threshold": 0.54,
+      "n_contacted": 1314,
+      "benefit_inr": 228969.33,
+      "cost_inr": 157680.0,
+      "net_retained_inr": 71289.33
+    },
+    {
+      "threshold": 0.55,
+      "n_contacted": 1260,
+      "benefit_inr": 221582.65,
+      "cost_inr": 151200.0,
+      "net_retained_inr": 70382.65
+    },
+    {
+      "threshold": 0.56,
+      "n_contacted": 1213,
+      "benefit_inr": 214819.92,
+      "cost_inr": 145560.0,
+      "net_retained_inr": 69259.92
+    },
+    {
+      "threshold": 0.57,
+      "n_contacted": 1150,
+      "benefit_inr": 205714.59,
+      "cost_inr": 138000.0,
+      "net_retained_inr": 67714.59
+    },
+    {
+      "threshold": 0.58,
+      "n_contacted": 1088,
+      "benefit_inr": 196794.98,
+      "cost_inr": 130560.0,
+      "net_retained_inr": 66234.98
+    },
+    {
+      "threshold": 0.59,
+      "n_contacted": 1020,
+      "benefit_inr": 186739.8,
+      "cost_inr": 122400.0,
+      "net_retained_inr": 64339.8
+    },
+    {
+      "threshold": 0.6,
+      "n_contacted": 958,
+      "benefit_inr": 177223.87,
+      "cost_inr": 114960.0,
+      "net_retained_inr": 62263.87
+    },
+    {
+      "threshold": 0.61,
+      "n_contacted": 911,
+      "benefit_inr": 169541.3,
+      "cost_inr": 109320.0,
+      "net_retained_inr": 60221.3
+    },
+    {
+      "threshold": 0.62,
+      "n_contacted": 861,
+      "benefit_inr": 161519.7,
+      "cost_inr": 103320.0,
+      "net_retained_inr": 58199.7
+    },
+    {
+      "threshold": 0.63,
+      "n_contacted": 801,
+      "benefit_inr": 151803.01,
+      "cost_inr": 96120.0,
+      "net_retained_inr": 55683.01
+    },
+    {
+      "threshold": 0.64,
+      "n_contacted": 729,
+      "benefit_inr": 140203.46,
+      "cost_inr": 87480.0,
+      "net_retained_inr": 52723.46
+    },
+    {
+      "threshold": 0.65,
+      "n_contacted": 672,
+      "benefit_inr": 130519.18,
+      "cost_inr": 80640.0,
+      "net_retained_inr": 49879.18
+    },
+    {
+      "threshold": 0.66,
+      "n_contacted": 617,
+      "benefit_inr": 120465.13,
+      "cost_inr": 74040.0,
+      "net_retained_inr": 46425.13
+    },
+    {
+      "threshold": 0.67,
+      "n_contacted": 576,
+      "benefit_inr": 113763.83,
+      "cost_inr": 69120.0,
+      "net_retained_inr": 44643.83
+    },
+    {
+      "threshold": 0.68,
+      "n_contacted": 527,
+      "benefit_inr": 105529.82,
+      "cost_inr": 63240.0,
+      "net_retained_inr": 42289.82
+    },
+    {
+      "threshold": 0.69,
+      "n_contacted": 478,
+      "benefit_inr": 96591.66,
+      "cost_inr": 57360.0,
+      "net_retained_inr": 39231.66
+    },
+    {
+      "threshold": 0.7,
+      "n_contacted": 446,
+      "benefit_inr": 90559.29,
+      "cost_inr": 53520.0,
+      "net_retained_inr": 37039.29
+    },
+    {
+      "threshold": 0.71,
+      "n_contacted": 386,
+      "benefit_inr": 79469.51,
+      "cost_inr": 46320.0,
+      "net_retained_inr": 33149.51
+    },
+    {
+      "threshold": 0.72,
+      "n_contacted": 314,
+      "benefit_inr": 66376.18,
+      "cost_inr": 37680.0,
+      "net_retained_inr": 28696.18
+    },
+    {
+      "threshold": 0.73,
+      "n_contacted": 264,
+      "benefit_inr": 56408.7,
+      "cost_inr": 31680.0,
+      "net_retained_inr": 24728.7
+    },
+    {
+      "threshold": 0.74,
+      "n_contacted": 219,
+      "benefit_inr": 47167.66,
+      "cost_inr": 26280.0,
+      "net_retained_inr": 20887.66
+    },
+    {
+      "threshold": 0.75,
+      "n_contacted": 173,
+      "benefit_inr": 38234.95,
+      "cost_inr": 20760.0,
+      "net_retained_inr": 17474.95
+    },
+    {
+      "threshold": 0.76,
+      "n_contacted": 125,
+      "benefit_inr": 28774.39,
+      "cost_inr": 15000.0,
+      "net_retained_inr": 13774.39
+    },
+    {
+      "threshold": 0.77,
+      "n_contacted": 100,
+      "benefit_inr": 23050.06,
+      "cost_inr": 12000.0,
+      "net_retained_inr": 11050.06
+    },
+    {
+      "threshold": 0.78,
+      "n_contacted": 76,
+      "benefit_inr": 17712.98,
+      "cost_inr": 9120.0,
+      "net_retained_inr": 8592.98
+    },
+    {
+      "threshold": 0.79,
+      "n_contacted": 44,
+      "benefit_inr": 10474.32,
+      "cost_inr": 5280.0,
+      "net_retained_inr": 5194.32
+    },
+    {
+      "threshold": 0.8,
+      "n_contacted": 28,
+      "benefit_inr": 6972.78,
+      "cost_inr": 3360.0,
+      "net_retained_inr": 3612.78
+    },
+    {
+      "threshold": 0.81,
+      "n_contacted": 20,
+      "benefit_inr": 5001.23,
+      "cost_inr": 2400.0,
+      "net_retained_inr": 2601.23
+    },
+    {
+      "threshold": 0.82,
+      "n_contacted": 11,
+      "benefit_inr": 2823.75,
+      "cost_inr": 1320.0,
+      "net_retained_inr": 1503.75
+    },
+    {
+      "threshold": 0.83,
+      "n_contacted": 10,
+      "benefit_inr": 2595.77,
+      "cost_inr": 1200.0,
+      "net_retained_inr": 1395.77
+    },
+    {
+      "threshold": 0.84,
+      "n_contacted": 7,
+      "benefit_inr": 1818.86,
+      "cost_inr": 840.0,
+      "net_retained_inr": 978.86
+    },
+    {
+      "threshold": 0.85,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.86,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.87,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.88,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.89,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.9,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.91,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.92,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.93,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.94,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.95,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.96,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.97,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.98,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 0.99,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    },
+    {
+      "threshold": 1.0,
+      "n_contacted": 0,
+      "benefit_inr": 0.0,
+      "cost_inr": 0.0,
+      "net_retained_inr": 0.0
+    }
+  ]
+}

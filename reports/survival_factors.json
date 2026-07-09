@@ -1,0 +1,10 @@
+{
+  "horizon_months": 24,
+  "monthly_discount_rate": 0.008,
+  "km_expected_months_by_contract": {
+    "Month-to-month": 15.5596,
+    "One year": 21.5623,
+    "Two year": 21.7578
+  },
+  "note": "Discounted expected months alive within the horizon, from the Day-5 Kaplan-Meier curve fitted per contract type."
+}

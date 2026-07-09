@@ -1,0 +1,66 @@
+{
+  "assumptions": {
+    "gross_margin": 0.6,
+    "monthly_discount_rate": 0.008,
+    "horizon_months": 24,
+    "offer_cost_inr": 120.0,
+    "acceptance_rate": 0.35,
+    "budget_inr": 100000.0
+  },
+  "assumption_note": "All monetary results are (simulation-based estimates). The source dataset contains ARPU and tenure but no cost, margin, offer, or acceptance data; margin, offer cost, acceptance rate, and budget are declared assumptions (see src/economics.py) and are stress-tested in the Day-11 sensitivity analysis. Only the Day-12 A/B design can measure acceptance for real.",
+  "budget_inr": 100000.0,
+  "results": {
+    "optimizer_roi": {
+      "n_contacted": 1347,
+      "spend_inr": 100000.0,
+      "expected_benefit_inr": 163132.65,
+      "net_retained_inr": 63132.65
+    },
+    "rank_by_probability": {
+      "n_contacted": 843,
+      "spend_inr": 99980.0,
+      "expected_benefit_inr": 150914.34,
+      "net_retained_inr": 50934.34
+    },
+    "random": {
+      "n_contacted": 1993,
+      "spend_inr": 99980.0,
+      "expected_benefit_inr": 81629.12,
+      "net_retained_inr": -18350.88
+    },
+    "contact_everyone": {
+      "n_contacted": 7043,
+      "spend_inr": 359060.0,
+      "expected_benefit_inr": 299050.94,
+      "net_retained_inr": -60009.06
+    }
+  },
+  "uplift_pct": {
+    "rank_by_probability": 23.9,
+    "random": 444.0,
+    "contact_everyone": 205.2
+  },
+  "budget_utilisation_pct": 100.0,
+  "dp_bound_inr": 63132.7,
+  "greedy_gap_pct": 0.0,
+  "offer_mix": [
+    {
+      "offer": "Bill discount",
+      "n": 50,
+      "spend": 11000.0,
+      "net": 4835.0
+    },
+    {
+      "offer": "Courtesy call",
+      "n": 833,
+      "spend": 33320.0,
+      "net": 23645.0
+    },
+    {
+      "offer": "Protection bundle",
+      "n": 464,
+      "spend": 55680.0,
+      "net": 34653.0
+    }
+  ]
+}
