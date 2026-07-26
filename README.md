@@ -19,8 +19,8 @@
 ![DuckDB](https://img.shields.io/badge/DuckDB-FFF000?style=flat-square&logo=duckdb&logoColor=black)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikit-learn&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)
-
-**[🌐 Live Demo](https://retainiq-india.streamlit.app/)** · **[📂 Source](https://github.com/garima-nandal17/RetainIQ_India)** · **[👤 Author](https://www.linkedin.com/in/garima-nandal-707590272)**
+git stt
+**[ Live Demo](https://retainiq-india.streamlit.app/)** · **[ Source](https://github.com/garima-nandal17/RetainIQ_India)** · **[ Author](https://www.linkedin.com/in/garima-nandal-707590272)**
 
 </div>
 
@@ -89,7 +89,7 @@ That reframes retention targeting from a **classification** problem into an **al
 
 Five modules, each answering one business question, connected by a **persistent campaign state** — a budget or assumption set on any page propagates to all of them, so the tool behaves like software an operator uses, not a set of disconnected charts.
 
-### 🖥️ Network Command
+###  Network Command
 *"How is the network performing, and what should we do next?"*
 
 The executive overview: revenue at risk, subscriber health, churn by tenure, and the recommended action. A persistent command bar carries the global KPIs; the colour legend lives here, where users land.
@@ -98,14 +98,14 @@ The executive overview: revenue at risk, subscriber health, churn by tenure, and
 
 Churn is **front-loaded** — first-year subscribers churn at **47.4%** against **9.5%** beyond four years — so tenure is the single strongest protective factor, measured directly rather than assumed.
 
-### 👥 Subscriber Intelligence
+###  Subscriber Intelligence
 *"Which subscribers are leaving, and why?"*
 
 Segmentation, revenue leakage by contract tier and risk band, SHAP-explained churn drivers, and subscriber archetypes built from the real base. High-risk subscribers pay **more**, not less — so retention here defends premium revenue.
 
 <div align="center"><img src="docs/screenshots/04-subscriber-intelligence.png" alt="Risk and value distribution" width="88%"/></div>
 
-### 🎯 Retention Campaigns — *the flagship*
+###  Retention Campaigns — *the flagship*
 *"Whom do we contact, with which offer, under budget?"*
 
 A **live budget optimizer**, offer-strategy allocation, and a **priority queue ranked by return per rupee** — filterable by offer, risk band, and value tier, and exportable as the campaign contact list.
@@ -116,14 +116,14 @@ Move the budget and the entire recommendation re-solves in real time:
 
 <div align="center"><img src="docs/screenshots/08-optimizer-live.gif" alt="Live optimizer" width="80%"/></div>
 
-### 🧪 Scenario Lab
+###  Scenario Lab
 *"What would break this recommendation?"*
 
 Live assumption controls — budget, offer acceptance, offer cost, gross margin — plus five presets (Conservative · Expected · Aggressive · Worst case · Best case), a tornado chart, and a two-way sensitivity heatmap. Under pessimistic assumptions the platform **recommends holding the budget** rather than spending it.
 
 <div align="center"><img src="docs/screenshots/05-scenario-lab.png" alt="Scenario Lab, worst-case preset" width="88%"/></div>
 
-### 📄 Executive Brief
+###  Executive Brief
 *"Give me the one-page read."*
 
 A board-ready report in six sections — Executive Summary, Financial Impact, Key Risks, Recommendation, Approval Required, Expected Outcome — composed **deterministically** from the live campaign state. No language model is involved, and the app says so: every figure is traceable to a governed metric.
@@ -215,10 +215,10 @@ make verify     # audit + 71 tests + assert the frozen headline numbers
 
 This is the part that separates a portfolio piece from a notebook.
 
-- **♻️ One command rebuilds everything.** `src/run_pipeline.py` runs the 9-stage chain from the raw CSV. *Verified by deleting all outputs and regenerating them — the headline figures returned to the rupee.*
-- **🔍 Static integrity auditor.** `tools/audit_app.py` walks the AST and resolves every module, every cross-module reference, and every page's `render()`. The "referenced but never generated" defect class cannot reach a green build.
-- **🔒 Frozen-metric guard.** `tools/check_frozen.py` fails loudly if any headline number drifts. The numbers are a committed contract.
-- **✅ CI on every push.** GitHub Actions installs pinned dependencies on a clean runner, **rebuilds the pipeline from source**, audits, runs 71 tests, and asserts the frozen figures. Reproducibility is *proven*, not claimed.
+- ** One command rebuilds everything.** `src/run_pipeline.py` runs the 9-stage chain from the raw CSV. *Verified by deleting all outputs and regenerating them — the headline figures returned to the rupee.*
+- ** Static integrity auditor.** `tools/audit_app.py` walks the AST and resolves every module, every cross-module reference, and every page's `render()`. The "referenced but never generated" defect class cannot reach a green build.
+- ** Frozen-metric guard.** `tools/check_frozen.py` fails loudly if any headline number drifts. The numbers are a committed contract.
+- ** CI on every push.** GitHub Actions installs pinned dependencies on a clean runner, **rebuilds the pipeline from source**, audits, runs 71 tests, and asserts the frozen figures. Reproducibility is *proven*, not claimed.
 
 Model trained on **5,634** subscribers, evaluated on a held-out **1,409** — leakage-free split, probability-calibrated.
 
@@ -256,11 +256,11 @@ A **single tonal family** — a plum-rose palette where every accent carries exa
 
 | Colour | Meaning |
 |:---|:---|
-| 🟥 Deep rose `#B0537A` | **Risk** — at-risk revenue, churn exposure |
-| 🌸 Light mauve `#D9A5C0` | **Opportunity** — recoverable, retained value |
-| 🟪 Plum-violet `#8E6BA8` | **Revenue** — portfolio value, ARPU |
-| 🌷 Brand rose `#C77DA0` | **Recommendation** — the platform's chosen action |
-| 🔴 Coral-rose `#D96B84` | **Alert** — loss, or a decision to stand down |
+|  Deep rose `#B0537A` | **Risk** — at-risk revenue, churn exposure |
+|  Light mauve `#D9A5C0` | **Opportunity** — recoverable, retained value |
+|  Plum-violet `#8E6BA8` | **Revenue** — portfolio value, ARPU |
+|  Brand rose `#C77DA0` | **Recommendation** — the platform's chosen action |
+|  Coral-rose `#D96B84` | **Alert** — loss, or a decision to stand down |
 
 ---
 
