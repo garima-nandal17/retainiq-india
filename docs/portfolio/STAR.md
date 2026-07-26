@@ -33,7 +33,7 @@ I implement the mechanism and document the limitation").
 **One-line résumé version.** *"Built a 5-dimension data-quality framework (47
 checks, hard/soft severity) with an automated target-leakage scan and tests,
 locking a provably trustworthy feature layer before modeling."*
-STAR #2 — Evaluation, explainability & the business read (Day 8 milestone: modeling locked)
+## STAR #2 — Evaluation, explainability & the business read (Day 8 milestone: modeling locked)
 
 Situation. The churn engine produced calibrated probabilities, but a probability nobody understands or trusts can't justify spending a retention budget — and accuracy on a 26.5%-churn base is misleading (predicting "nobody churns" scores ~73%).
 
@@ -55,3 +55,41 @@ Action. I attached money to every customer: a 24-month LTV discounted by their c
 Result. Under a binding ₹1,00,000 budget the optimizer contacts 1,349 customers with a tailored offer mix, using 100% of budget and retaining ₹63,133 net — 23.9% more than ranking by churn probability alone (the typical churn-project approach), and 205% better than contacting everyone, which actually loses ₹60,009 (simulation-based). Sensitivity analysis showed the campaign survives down to a 12.2% acceptance rate — a ~3× cushion — while the pessimistic scenario correctly recommends contacting nobody.
 
 One-line résumé version. "Built a budget-constrained retention optimizer (0/1 knapsack, DP-verified) that assigns offers to maximise net revenue retained — 23.9% more efficient than probability-ranked targeting under a fixed budget (simulation-based)."
+STAR #2 — Evaluation, explainability & the business read
+modelling locked
+
+Situation. The churn engine produced calibrated probabilities, but a probability nobody understands or trusts can't justify spending a retention budget — and accuracy on a 26.5%-churn base is misleading, since predicting "nobody churns" already scores ~73%.
+
+Task. Evaluate the model beyond accuracy, explain why it flags a subscriber in language the Head of Retention can act on, and translate both into a targeting recommendation.
+
+Action. I evaluated on ranking and probability quality rather than accuracy — ROC-AUC 0.844, PR-AUC 0.660, a reliability curve (max calibration gap 0.055), a precision/recall/F1 threshold sweep, and a decile-lift gains table. I explained drivers two ways that agree: logistic odds ratios and SHAP (explaining the base logistic — valid because calibration is a monotonic transform). I then wrote a stakeholder "business read" — and flagged an honest caveat: total_charges shows a churn-raising coefficient only conditional on tenure, a collinearity effect, so I anchored the narrative on the drivers all methods agree on (tenure, contract type, protection-service adoption) rather than over-reading a single collinear coefficient.
+
+Result. A defensible, explainable model with a concrete targeting rule: the top 3 risk deciles — 30% of subscribers — capture 65% of all churners, and lowering the threshold to 0.30 raises recall to 76%, with the exact operating point deferred to the profit curve. The model is locked; explanation and evaluation are reproducible artifacts, not slideware.
+
+Résumé line. Evaluated a churn model on ranking and calibration (AUC 0.844, calibration gap 0.055), explained it with SHAP and odds ratios, and translated it into a decile-based targeting rule capturing 65% of churners in the top 30%.
+
+## STAR #3 — Budget-constrained retention optimizer ★ the thesis
+thesis proven
+
+Situation. The retention team had a churn ranking but a fixed monthly budget. A churn score alone doesn't say whom to call: contacting every flagged subscriber would cost more than it saves, because the most at-risk subscribers are not always the most valuable to save.
+
+Task. Turn calibrated probabilities into a decision — whom to contact, with which offer, under a hard budget — and prove that decision beats the obvious alternatives.
+
+Action. I attached money to every subscriber: a 24-month lifetime value discounted by their contract's actual Kaplan-Meier survival curve, giving an expected value at risk. I built a rupee profit curve, then found the key insight — a single global threshold can never be optimal, because a subscriber's break-even churn probability depends on their lifetime value and ranges from 0.22 to 1.96 across the base. So I reframed targeting from a classification problem into an allocation problem: a 0/1 knapsack that chooses (subscriber, offer) pairs to maximise net revenue retained subject to the budget, solved greedily by benefit-to-cost ratio and verified against a dynamic-programming bound (gap 0.000%). I centralised every rupee assumption in one auditable module, and rejected my own initial ₹500 offer-cost assumption after measurement showed it made zero of 7,043 subscribers profitable to contact.
+
+Result. Under a binding ₹1,00,000 budget the optimizer contacts 1,349 subscribers with a tailored offer mix, using 100% of budget and retaining ₹63,133 net — 23.9% more than ranking by churn probability alone (the typical churn-project approach) and 205% better than contacting everyone, which actually loses ₹60,009. Sensitivity analysis showed the campaign survives down to a 12.2% offer-acceptance rate — a ~3× cushion — while the pessimistic scenario correctly recommends contacting nobody.
+
+Résumé line. Built a budget-constrained retention optimizer (0/1 knapsack, DP-verified) that assigns offers to maximise net revenue retained — 23.9% more efficient than probability-ranked targeting under a fixed budget.
+
+## STAR #4 — Reproducibility, integrity & CI
+portfolio-grade
+
+Situation. The analytics were done and defensible, but a portfolio project lives or dies on whether someone else can trust and run it. Two risks remained: the headline numbers could silently drift as code changed, and the five-page decision app could accumulate broken references a casual look would miss. A reviewer had, in fact, reported a "missing function" the repo actually contained — our working copies had diverged, and I had no objective way to prove who was right.
+
+Task. Make the project reproducible on a clean machine, protect the frozen numbers from drift, and prove the application is internally consistent — then wire all three into an automated gate so they can't regress.
+
+Action. I built one-command reproducibility: src/run_pipeline.py runs the ordered 9-stage chain from the raw CSV, wrapped by a Makefile with a verify gate. To settle the divergence claim objectively I wrote tools/audit_app.py, an AST static auditor that resolves every module, every cross-module reference (287 of them), and every page's render() — it found the reported function present and surfaced one genuine piece of dead code, which I removed. I added tools/check_frozen.py to assert the headline figures against the produced artifacts, plus data-loader smoke tests that execute every DuckDB query directly (three binder errors had slipped past render-only tests because caching hid them). Finally, GitHub Actions runs the whole thing on a clean Ubuntu checkout — install pinned dependencies, rebuild the pipeline from source, audit, test, and assert the frozen numbers — so reproducibility is proven on every push, not asserted.
+
+Result. The pipeline regenerates the exact frozen figures from raw data — verified by deleting every output and rebuilding from scratch, which reproduced net ₹63,132.68, AUC 0.8441, and 1,349 contacts to the rupee. The suite runs 71 tests; the integrity audit reports zero unresolved references; CI gates every change on audit + tests + frozen-number stability. The project moved from "analysis that runs on my machine" to "a reproducible, integrity-checked platform another engineer can clone and trust."
+
+Résumé line. Made a decision-support platform reproducible and drift-proof: one-command pipeline, AST integrity auditor, frozen-metric guard, and GitHub Actions CI that rebuilds from source and fails on analytics drift (71 tests).
