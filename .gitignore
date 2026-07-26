@@ -28,11 +28,16 @@ env/
 # ---- Jupyter ----
 .ipynb_checkpoints/
 
-# ---- Data: never commit raw or processed customer data (rebuild from source) ----
+# ---- Data ----
 data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+
+# Demo artifacts required for Streamlit deployment
+!data/processed/customer_value.parquet
+!data/processed/feature_customer.parquet
+!data/processed/retainiq.duckdb
 
 # ---- Local planning drafts (promoted into place on their real day) ----
 docs/planning/
