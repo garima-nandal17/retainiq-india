@@ -468,3 +468,235 @@ docs(runlog): day 11
 docs: A/B experiment design for retention campaign (power, guardrails, decision rule)
 docs(runlog): day 12
 ```
+---
+## Day 13 — Enterprise Edition redesign (v4, final)
+
+Prior iterations drifted toward a console/cyberpunk aesthetic. Rebuilt the presentation layer against a measured audit. Analytics untouched throughout: net ₹63,132.68 · uplift +23.9% · AUC 0.8441 · 1,349 rows. Integrity audit ✓ · suite 68 passed.
+
+Diagnosis (measured, not opinion)
+
+The audit found the root cause was the design system, not the pages: the palette was literally VIOLET #8B5CF6 + MAGENTA #EC4899 (the banned purple/pink), with 11 gradients, 4 animations, and Rajdhani — an esports display face doing more to create the "gaming UI" read than the colours were. Page-level: Executive carried 8 KPI cards (no hierarchy); Customer carried 8 charts (chart dump); Scenario Simulator had no live controls at all — structurally backwards, since it is the page meant to be interactive.
+
+Step 0 — design system
+
+Deep-navy enterprise console (Azure Portal / Datadog / Cisco Control Center). Canvas 
+#0A0F1A, surface 
+#111A2B, raised 
+#16213A, steel hairlines. One brand accent (blue 
+#3B82F6); teal secondary; green/amber/red semantic only. Inter exclusively, tabular-nums on every figure. 8pt grid · 6px radius · one shadow · zero gradients · zero keyframe animation (150ms hover only). Hero numeral 3.05rem → 2.0rem: hierarchy from placement and whitespace, not size.
+
+Steps 1–5 — modules
+Executive Dashboard — lead card (recommendation) + four-tile portfolio row; churn trend by tenure; revenue bridge; action summary. 8 KPIs → 6, one clear entry point.
+Decision Engine (flagship, renamed) — live budget optimizer as st.fragment; offer-strategy decision cards; priority queue ranked by return per rupee with three filters, queue summary and CSV export; evidence moved into tabs (uplift · profit curve · optimality).
+Scenario Simulator — live assumption controls moved here (budget, acceptance, offer cost, margin); impact cards vs plan of record; side-by-side comparison panels; tornado; acceptance × cost heatmap; named scenarios.
+Customer Intelligence — contract-mix and internet-mix donuts; segment matrix table ranked by revenue at risk; leakage treemap; ARPU-by-risk; subscriber archetype cards built from the real base; churn funnel; validation in an expander.
+Executive Briefing (renamed from "AI Briefing") — narrative composed from live state; risk register; sequenced actions; changes-from-plan; business insights; CSV + TXT export.
+Design decisions
+D-063 — "AI Briefing" renamed to "Executive Briefing". No language model writes this page; the narrative is composed deterministically from the campaign state and governed metrics. Labelling a template "AI" would be the first overclaim in 13 days of honest labelling, and the Out-of-Scope register already rules out an LLM layer. "Deterministically generated from governed metrics, every figure traceable" is the stronger claim.
+D-064 — Colour is information, not decoration. Green/amber/red are reserved for retained / caution / alert. One brand accent. This is why an amber cell now means something.
+D-065 — Assumption controls belong on the Simulator. The budget lever stays on the Decision Engine (it is the thesis); acceptance, cost and margin moved to the Simulator. State persists, so either page drives the whole platform.
+D-066 — Evidence behind tabs, decisions in front. Operational software surfaces the action and keeps the proof one click away.
+Honest limitation
+
+Verified programmatically (AppTest render × 5, AST audit, CSS structural + compliance checks). Not visually inspected — no browser installs in the build sandbox. Run streamlit run app/dashboard.py and review spacing, alignment and contrast on a real display before demoing.
+
+Day 13 — Enterprise Edition, fix pass (v4.1)
+
+Two issues from live testing on the user's machine (stricter DuckDB build than the sandbox).
+
+D-067 — DuckDB binder crash in load_lifecycle. GROUP BY 1 with ORDER BY MIN(tenure_months) raised BinderException on the user's DuckDB (the sandbox build tolerated it — a false pass). Rewrote with an explicit WITH banded AS (...) subquery carrying both the label and an integer sort_key, grouping and ordering on real columns. Reconciles to 1,869 churned / 26.54%, matching frozen.
+D-068 — Data-loader smoke tests. Three DuckDB errors have now slipped past AppTest because cached DB calls don't always surface under the render harness. Added test_all_data_loaders_execute: clears caches and calls every loader directly against the real DB, asserting row counts and the churn reconciliation. This is the test that would have caught all three. Suite now 69.
+D-069 — Executive silhouette de-MacroPulse'd. User identified the opening (full-width ribbon → full-width banner → one oversized hero card) as MacroPulse's shape. Confirmed by inspection. Replaced with a Datadog/Azure-Portal pattern: compact one-line status strip (page question left, live campaign figures inline right) then a dense six-tile equal KPI strip, then straight into the content grid. Removed the full-width campaign_banner (dead code) and dropped hero=True from the Executive landing entirely. Other pages inherit the compact strip via the shared header.
+
+Analytics frozen throughout: net ₹63,132.68 · uplift +23.9% · AUC 0.8441 · 1,349 rows. Audit ✓ · 69 passed.
+
+ Day 14 — Reproducibility, CI, executive memo, STAR #4 ◆ MILESTONE (portfolio-grade)
+
+Made the project senior: one-command reproducibility, an automated integrity + drift gate, and the portfolio-facing documents. No analytics touched — verified by rebuilding from raw.
+
+Done
+requirements.lock (14 pinned packages) — closes OPEN-1, carried since Day 1.
+Makefile — setup · pipeline · test · audit · verify · app · all · clean. verify chains audit → tests → frozen-number check (the CI gate).
+tools/check_frozen.py — asserts the four headline figures (net ₹63,132.68, uplift 23.9%, AUC 0.8441, 1,349 rows) against the produced artifacts; fails loudly on drift.
+.github/workflows/ci.yml — on every push: pinned install → rebuild pipeline from source → audit → 69 tests → frozen check. Reproducibility is proven on a clean Ubuntu checkout, not asserted.
+docs/executive_memo.md — one-page decision memo (recommendation, ₹ impact, risks, validation plan, deliberate non-decisions).
+STAR #4 appended (reproducibility, integrity, product layer) — the set is now complete (4 milestones).
+README.md — replaced the Day-1 stub with the final front door: results table, make quickstart, the thesis, the 5-page platform, reproducibility/integrity section, out-of-scope table, honesty pattern, doc index. All links verified.
+Proven, not asserted
+End-to-end reproducibility: wiped data/processed/ + reports/ + models/, ran python src/run_pipeline.py from raw, and it regenerated the frozen figures to the rupee (net ₹63,132.68, AUC 0.8441, 1,349 contacts). This is the day's real result.
+Un-ignored the public IBM Telco raw CSV (data/raw/telco_churn_raw.csv) so CI can rebuild from source — it's a public dataset, no privacy concern.
+Design decisions
+D-070 — CI rebuilds from source rather than trusting committed artifacts. A CI that only reads committed reports/ proves nothing about reproducibility. Rebuilding the pipeline on a clean runner and then asserting the frozen numbers is the stronger guarantee.
+D-071 — needs_data vs needs_reports test guards. Data-dependent tests (DuckDB/parquet) now skip cleanly when data/processed/ is absent (a bare checkout) and run when CI rebuilds it. Clean checkout: 20 pass / 49 skip, no crash. Full run: 69 pass.
+D-072 — frozen numbers are a committed contract. check_frozen.py encodes the four headline figures as the drift gate; changing them requires changing the guard, deliberately.
+
+Suite 69 passed · audit ✓ · frozen ✓. Remaining: Day 15 (deploy, résumé bullets, demo script, LinkedIn) and the product-experience pass discussed (onboarding, state-change feedback, empty/hold states).
+
+Day 13 — product-experience pass + polish (v5)
+
+Closed the "70% analytics / 30% product" gap the reviewer identified, and tightened the visual system. Analytics frozen: net ₹63,132.68 · uplift +23.9% · AUC 0.8441 · 1,349 rows. Audit ✓ · 71 passed.
+
+Polish (measured, not eyeballed)
+Type scale collapsed 17 → 7 sizes. An audit found 17 distinct font-size values — the reason the type read as unsystematic. Snapped to a disciplined ramp (.68 / .78 / .875 / 1 / 1.375 / 1.5 / 2 rem). Hardcoded 2/3px radii unified to a single 4px chip radius alongside var(--r) 6px for cards.
+Product layer (the 30%)
+D-073 — First-run onboarding. ui.onboarding() shows once per session at the top of the app: what the platform is, and "start on the Decision Engine." Dismissed to session_state.onboarded. A cold-open user now gets a start line instead of a mid-workflow drop.
+D-074 — State-change feedback made legible. ui.scenario_flag() on every stateful page shows either "Plan of record" (locked) or "Custom scenario active — budget ₹X · acceptance Y× … Carried across every page." Backed by state.changes_from_plan(). The propagation that was always happening is now visible — the difference between a workflow that works and one you can see working.
+D-075 — Designed empty/hold states. ui.empty_state() replaces bare st.error/blank panels: (a) the budget-hold recommendation ("hold the budget — no subscriber has positive expected value"), and (b) the priority queue when filters match nothing. Edge states are where student projects fall back to a traceback; these are crafted.
+Tests
+
+Added test_product_primitives_exist and test_hold_state_triggers_on_tiny_budget (asserts the hold state actually engages at a tiny budget and the custom-scenario diff is correct). Suite 69 → 71.
+
+Honest limitation
+
+Tabler icon webfont loads from a CDN (jsdelivr); if a demo machine is offline the empty-state glyphs won't render, though the text still does. Not visually inspected in-sandbox — run streamlit run app/dashboard.py and confirm the onboarding card, the custom-scenario flag (move a budget slider), and the hold state (drop the budget to ₹10,000) on a real display.
+
+Fix — Streamlit auto-pages collision (app/pages/ → app/views/)
+
+User reported seeing one long scroll with no navigation rail. Root cause: Streamlit auto-detects a folder literally named pages/ sitting beside the entrypoint (app/dashboard.py → app/pages/) and builds its own implicit multipage nav from it, which collides with the explicit st.navigation() router. Renamed app/pages/ → app/views/ so the auto-magic can never trigger and st.navigation is unambiguously the only navigation. Updated all imports, the AST auditor's package set and wiring check, and docs. Audit ✓, 71 passed, server boots with no auto-pages message, frozen intact.
+
+D-076 — page modules live in app/views/, never app/pages/. The name pages/ is reserved by Streamlit's automatic multipage feature; using it beside an entrypoint that also calls st.navigation produces duplicate/broken navigation.
+
+Fix — chart palette (semantic vs categorical separation)
+
+User: "the colours of the charts are really bad." Correct — the charts mixed saturated semantic colours (red/green/amber) into categorical roles, so a churn funnel lit up like a traffic light and read meaning where there was none, clashing with the restrained navy shell.
+
+D-077 — two-track chart palette. Split colour into (a) a muted categorical ramp (CAT — soft blue, muted teal, slate, dusty indigo, clay, sky) for "just different things" where colour must not imply valence, and (b) reserved semantic tones used only where valence is real, and softened (recovery 
+#4E9E7E, cost/loss 
+#C77B72) so they no longer glare against the dark surface. Ordered charts now use single-hue sequential ramps: the churn funnel went from five competing colours to one deepening blue; risk-ordered charts (treemap, ARPU violins, sankey nodes/links) route through a calm RISK ramp (teal → soft amber → soft coral). Donuts use CAT. The waterfall keeps green/coral for valence but muted, with the total in brand blue. Full-saturation RED/GREEN/AMBER remain only as UI state tokens (tags, alerts), never in chart fills.
+
+71 passed · audit ✓ · frozen intact (net ₹63,132.68, AUC 0.8441, 1,349 rows). Not visually inspected in-sandbox — confirm on a real display.
+
+Refine — muted brand fill for large chart areas (D-077 follow-up)
+
+Screenshots after D-077 confirmed the categorical/semantic split landed, but full-saturation brand blue 
+#3B82F6 in large filled bars (waterfall totals, strategy winner, tornado, offer bars, sankey offer nodes) was now the only remaining glare against the muted coral/teal. Added BLUE_FILL #4E7FC2 (muted brand) for large filled areas; vivid BLUE stays for lines, markers and thin accents where it doesn't overpower. 71 passed · frozen intact.
+
+Day 13+ — Palette A (single plum-rose family) + telecom page identity + narrative spine
+
+Full visual overhaul on user direction. Analytics frozen: net ₹63,132.68 · uplift +23.9% · AUC 0.8441 · 1,349 rows. Audit ✓ · 71 passed.
+
+D-078 — Palette A, single tonal family. Replaced the enterprise-navy system with a plum-charcoal identity where every semantic accent lives in ONE rose/plum hue band, separated by lightness + warmth, not by unrelated hues: RISK_C deep rose 
+#B0537A · OPP_C light mauve 
+#D9A5C0 · REVENUE_C plum-violet 
+#8E6BA8 · RECO_C brand rose 
+#C77DA0 · ALERT_C coral-rose 
+#D96B84 · NEUTRAL_C plum-grey. Back-compat aliases (BLUE→RECO_C etc.) so chart code kept working; CAT ramp = lightness steps within family + one neutral for busy charts. Surfaces CANVAS 
+#0E0B12 / SURFACE 
+#171320 / SURFACE_2 
+#201A2E, plum-tinted borders, TEXT 
+#F2EEF5. Streamlit config + :root semantic vars updated. Rationale: user wanted a unique premium identity (not the earlier rejected neon magenta); single-family reads as intentional/executive (cf. Radix Colors, Linear, Vercel Geist).
+
+D-079 — Colour legend, Executive only. Full legend (risk/opportunity/revenue/recommendation/alert, each with business meaning) on the landing page only; other pages use small family-coloured ui.badge() status chips. Colour becomes an intuitive language after first contact rather than repeated chrome.
+
+D-080 — Telecom page identity + narrative spine. Renamed pages to telecom-native labels: Network Command · Subscriber Intelligence · Retention Campaigns · Scenario Lab · Executive Brief (module filenames unchanged, so imports/tests/auditor stable). Added ui.next_step(question, target) closing every page except the terminus, forming a guided decision journey: Network Command → (revenue leaking, who?) → Subscriber Intelligence → (whom to contact?) → Retention Campaigns → (what breaks it?) → Scenario Lab → (summarise) → Executive Brief. Reads as a workflow, not disconnected pages.
+
+Not visually inspected in-sandbox — confirm the plum family, legend, badges, and next-step flow on a real display.
+
+Fix — sidebar invisible (hidden header removed the expand control)
+
+User on Streamlit 1.59 reported NO sidebar at all, launched correctly. Root cause: the enterprise-redesign CSS hid the whole header element (header {display:none}) to remove Streamlit chrome — but the sidebar's collapse/expand toggle lives inside that header, so if the sidebar was collapsed there was no control to reopen it. Fixed: hide only #MainMenu/toolbar/decoration, keep header[data-testid=stHeader] present (transparent, height:0), and force the sidebar + collapsedControl visible. Also added a version-proof custom button rail fallback for Streamlit <1.36 (D-081). 71 passed, frozen intact.
+
+D-081 — never hide the whole Streamlit header. It contains the sidebar expand control; hiding it can strand users with no navigation. Hide individual chrome testids instead.
+
+Fix — navigation rebuilt as top tabs (sidebar approach abandoned)
+
+User on Streamlit 1.59 still had NO navigation after the header-CSS fix, and the next-step link was a dead div. Root problem: sidebar-based nav kept failing on the user's machine for reasons not reproducible in-sandbox (collapsed rail / diverged tree). Decision: stop depending on the sidebar entirely.
+
+D-082 — navigation moved to top-of-main-content tabs. Rebuilt main() around st.session_state.page + a row of st.button tabs rendered at the TOP of the main pane (brand row → 5 tab buttons → rule). This renders where it cannot be hidden by sidebar CSS or a collapsed rail. Dropped the st.navigation/st.Page dependency. Added goto(key) for programmatic navigation.
+
+D-083 — next_step is now a real button. Consolidated two duplicate next_step defs into one that renders the next question + a real st.button; each page wires it to goto(next_key), so the narrative spine actually moves you page-to-page. Proven via AppTest simulated clicks: tab click switches page ✓, next-step button navigates ✓.
+
+71 passed · audit ✓ · frozen intact.
+
+## DAY 14 — Reproducibility, CI & executive reporting ◆ MILESTONE
+
+Objective: move from "analysis that runs on my machine" to a reproducible, drift-proof repo another engineer can clone and trust.
+
+Shipped
+
+requirements.lock — 14 pinned packages, closes OPEN-1 (open since Day 1).
+Makefile — setup · pipeline · test · audit · verify · app · all · clean; verify chains audit → tests → frozen check.
+tools/check_frozen.py — asserts the four headline figures against produced artifacts, fails loudly on drift.
+.github/workflows/ci.yml — clean checkout → pinned install → rebuild pipeline from source → audit → tests → frozen check.
+docs/executive_memo.md — one-page decision memo (recommendation, ₹ impact, risks, validation plan, deliberate non-decisions).
+STAR #4 appended — the interview set is complete (4 milestones).
+README.md — replaced the Day-1 stub with the real front door.
+
+Proven, not asserted. Wiped data/processed/, reports/, models/; ran src/run_pipeline.py from raw CSV; it regenerated the frozen figures to the rupee (net ₹63,132.68 · uplift 23.9% · AUC 0.8441 · 1,349 contacts). That reproduction is the day's real result.
+
+Decisions
+
+D-070 — CI rebuilds from source rather than trusting committed artifacts; reading back committed reports proves nothing about reproducibility.
+D-071 — needs_data vs needs_reports test guards, so data-dependent tests skip cleanly on a bare checkout (20 pass / 49 skip) and run fully when CI rebuilds (69 pass).
+D-072 — the frozen numbers are a committed contract; changing them requires changing the guard, deliberately.
+DAY 15 — Product experience, visual identity & deployment ◆ FINAL
+
+Objective: close the product gap, give the platform a distinct telecom identity, and ship it publicly.
+
+Product experience
+D-073/074/075 — first-run onboarding; scenario_flag making state propagation visible ("Plan of record" vs "Custom scenario active — carried across every page"); designed empty/hold states replacing bare errors (budget-hold recommendation, "no subscribers match these filters").
+Type scale collapsed 17 → 7 sizes; small radii unified. Polish by subtraction.
+Visual identity — Palette A, single tonal family
+D-078 — replaced the enterprise-navy system with a plum-charcoal identity where every semantic accent lives in one rose/plum hue band, separated by lightness and warmth rather than unrelated hues: risk 
+#B0537A · opportunity 
+#D9A5C0 · revenue 
+#8E6BA8 · recommendation 
+#C77DA0 · alert 
+#D96B84 · neutral 
+#6E6479. Surfaces #0E0B12 / #171320 / #201A2E. Rationale: the earlier neon magenta read as gaming; a single family reads as intentional and executive (cf. Radix Colors, Linear, Vercel Geist).
+D-077 — two-track chart colour: muted categorical vs reserved semantic; ordered charts use single-hue sequential ramps (the funnel went from five competing colours to one deepening ramp). BLUE_FILL added so large filled bars don't glare.
+D-079 — full colour legend on the landing page only; other pages use small family-coloured badges. Colour becomes a language after first contact rather than repeated chrome.
+Telecom identity & narrative
+D-080 — pages renamed to telecom-native labels: Network Command · Subscriber Intelligence · Retention Campaigns · Scenario Lab · Executive Brief (module filenames unchanged, so imports/tests/auditor stayed stable). Each page closes by posing the next business question, forming a guided journey: network health → revenue leaking, who? → whom do we contact? → what breaks it? → summarise for leadership.
+Navigation — the hard-won fix
+
+Three separate causes, found in order:
+
+D-076 — page modules must never live in a folder named pages/; Streamlit auto-builds an implicit nav from it that collides with an explicit router. Moved to app/views/.
+D-081 — never hide the whole Streamlit header; the sidebar's expand control lives inside it, so hiding it can strand the user with no navigation. Hide individual chrome testids instead.
+D-082 — after the sidebar still failed to render on the user's machine, abandoned sidebar navigation entirely. Rebuilt main() around st.session_state.page plus a row of tab buttons at the top of the main content area, where no sidebar CSS or collapsed rail can hide them. Dropped the st.navigation/st.Page dependency; added goto(key).
+D-083 — next_step was a decorative div, not a control. Consolidated two duplicate definitions into one real button wired to goto(). Verified by simulated clicks: tab click switches page ✓, next-step button navigates ✓.
+
+Lesson: when a framework's behaviour contradicts correct-looking code, suspect a framework convention before suspecting the logic — and when a mechanism keeps failing in an environment you cannot observe, replace the mechanism rather than continue debugging it blind.
+
+Deployment
+Processed data (DuckDB + parquet, 8.6 MB) un-ignored — the app reads it at runtime, so a cloud deploy without it would crash on boot.
+requirements.txt re-pinned to the verified versions and pyarrow added (parquet reads would have failed); runtime.txt → Python 3.13.
+Verified: no secrets, venv/cache ignored, theme config present, repo 12 MB.
+
+Final state: 5-page decision platform · 71 tests · audit ✓ · frozen ✓ (net ₹63,132.68 · uplift +23.9% · AUC 0.8441 · 1,349 contacts) · reproducible from raw with one command · CI-gated.
+
+Remaining is a human step only: push to GitHub and connect Streamlit Community Cloud (app/dashboard.py), then drop the live URL into the README, résumé bullets, and demo script.
+
+Final — README rebuilt as the portfolio front door
+
+Replaced the functional README with a recruiter-facing one: badge row (live app · CI · Python · tests), a hero screenshot slot, the problem stated as a business dilemma before any metric, a centred results table, the core insight (break-even churn probability spans 0.22–1.96, so no fixed threshold can be optimal) given its own section, a five-page platform tour with one screenshot slot each, tech-stack rationale table, reproducibility section, the design-system colour key, the deliberate non-decisions table, the honesty pattern, a "what I'd build next" section, and a documentation index. Seven screenshot slots and an optional demo-GIF slot are marked with HTML comments specifying exactly what to capture. Corrected stale facts carried from earlier drafts (69 → 71 tests; sidebar rail → top-tab routing; app/pages → app/views). Also fixed the same stale routing claim in the dashboard.py module docstring.
+
+Production polish pass — enterprise refinement
+
+UI/UX only. Architecture, business logic, ML pipeline, optimizer, calculations and data flow untouched — confirmed by check_frozen (net ₹63,132.68 · uplift 23.9% · AUC 0.8441 · 1,349 rows) and the full suite. Audit ✓ · 71 passed.
+
+D-084 — persistent global command bar; page chrome de-duplicated. Platform health (Subscriber feed · Risk engine AUC · Mode), live campaign KPIs (Budget · Targeted · Net retained · Utilisation), scenario state and build metadata (Refreshed · Model v1.2 · Data v1.0 · Pipeline v1.4) now render once in the app chrome. _shell.header() was rendering all of it on every page — and calling ui.workflow() twice — with two further mid-page breadcrumbs in brief.py and decision.py. That repetition was the main reason five pages read as one long scroll. header() is now page identity only (title + the question the page answers); workflow_step/banner are retained as ignored parameters for call-site compatibility.
+
+D-085 — typography hierarchy in four distinct levels. Page title 1.6rem/600/tight tracking → section heading .8rem/600/uppercase-tracked with a rule → KPI value 1.5rem tabular → supporting text .73–.83rem muted. Sections previously competed with page titles at similar weight.
+
+D-086 — density increased ~25%. Block padding 1.25/2/3rem → .9/1.75/2rem; vertical block gap → .55rem; horizontal gap → .65rem; card padding 1/1.1rem → .8/.9rem; section margins 1.75/.8 → 1.35/.6rem.
+
+D-087 — card and table treatment. Cards: inset top highlight, layered shadow, 1px lift and border brighten on hover. Tables: sticky uppercase headers, zebra striping, rose hover highlight, tabular numerals, rounded clipped corners.
+
+D-088 — micro-interactions. 280ms fade-and-rise on cards, charts, tables and the command bar; button hover glow and 1px active depression; all transitions ≤180ms. No looping animation.
+
+D-089 — scroll reset on navigation. Streamlit preserves scroll offset across reruns, so switching pages landed mid-document. _scroll_top_if_page_changed() injects a one-shot scroll-to-top when the page key changes, guarded in try/except — a cosmetic feature must never break navigation.
+
+D-090 — number formatting standardised. Added data._indian_group() so inr_exact renders Indian digit grouping (₹13,58,000 not ₹1,358,000) and data.pct() for consistent percentages. Presentation only; no computed value changes.
+
+D-091 — loading and empty states. Meaningful spinners: "Updating optimizer — re-solving the budget allocation…", "Running simulation — re-pricing every subscriber…", "Loading subscribers — reading the governed feed…". Designed empty states already covered the hold and no-match cases.
+
+D-092 — recommendation cards explain themselves. New ui.recommendation() renders the verdict with confidence (derived from the break-even acceptance cushion), return per rupee, and four evidence bullets (uplift vs both baselines, DP optimality gap, decile capture and AUC, break-even cushion), plus the acceptance caveat. A recommendation without reasoning is an assertion.
+
+D-093 — Executive Brief as a consulting deliverable. Six numbered sections: Executive summary · Financial impact · Key risks · Recommendation · Approval required · Expected outcome. Still composed deterministically from live campaign state — no LLM.
+
+D-094 — scenario presets. Conservative · Expected · Aggressive · Worst case · Best case, each setting the four existing assumption sliders with a one-line rationale. Presets move declared assumptions only; the simulation path is unchanged.
+
+D-095 — chart takeaways. Captions on the highest-traffic charts promoted to styled ui.takeaway() blocks — accent rule, marker glyph — so the business conclusion reads as a deliberate statement rather than fine print.
+
